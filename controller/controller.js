@@ -55,4 +55,38 @@ module.exports = function (app) {
         //
         // res.json(data);
     });
+
+    app.put('/todo/:item',function (req,res) {
+
+        console.log(req.params.item);
+        var wherestr = {item:req.params.item};
+
+
+
+        Todo.find(wherestr,function (err,data) {
+            if(err){
+                throw err;
+            }
+
+
+            console.log(data);
+            data.forEach(doc =>{
+                console.log(doc.flag);
+            if(doc.flag == true){
+                 var updatestr = {flag: false};
+            }else{
+                var updatestr = {flag: true};
+            }
+
+            Todo.updateOne(wherestr, updatestr, function(err, data) {
+             if (err) throw err;
+            res.json(data);
+        });
+            });
+
+        })
+
+
+
+    });
 }
