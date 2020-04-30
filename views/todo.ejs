@@ -57,7 +57,7 @@
     $(document).ready(function(){
         $('header').on('submit', function(){
             var item = $('form input');
-            var todo = {item:item.val()};
+            var todo = {item:item.val(),flag:false};
 
             if(todo.item == ''){
                alert('please enter your content!');

@@ -5,7 +5,8 @@ mongoose.connect('mongodb+srv://Todo1234:Todo1234@cluster0-jhupg.mongodb.net/tes
 
 
 var todoSchema = new mongoose.Schema({
-    item:String
+    item:String,
+    flag:Boolean
 });
 
 
@@ -34,6 +35,7 @@ module.exports = function (app) {
 
     // post
     app.post('/todo',urlencodeParser,function (req,res) {
+        console.log(req.body);
         Todo(req.body).save(function (err,data) {
             if (err) throw err;
             res.json(data);
